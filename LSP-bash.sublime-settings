@@ -1,0 +1,22 @@
+{
+	// @see https://github.com/mads-hartmann/bash-language-server
+	"languages": [
+		{
+			"languageId": "bash",
+			"scopes": [
+				"source.shell.bash",
+			],
+			"syntaxes": [
+				"Packages/ShellScript/Bash.sublime-syntax",
+			],
+		},
+	],
+	"initializationOptions": {
+		// ...
+	},
+	"settings": {
+		"bash": {
+			// ...
+		},
+	},
+}
