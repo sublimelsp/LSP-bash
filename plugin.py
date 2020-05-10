@@ -17,5 +17,6 @@ class LspBashPlugin(NpmClientHandler):
         server_directory, 'node_modules', 'bash-language-server', 'bin', 'main.js'
     )
 
-    def get_binary_arguments(self):
+    @classmethod
+    def get_binary_arguments(cls):
         return ['start']
