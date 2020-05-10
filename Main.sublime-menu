@@ -20,7 +20,7 @@
                     "command": "edit_settings",
                     "args": {
                       "base_file": "${packages}/LSP-bash/LSP-bash.sublime-settings",
-                      "default": "// Settings in here override those in \"LSP-bash/LSP-bash.sublime-settings\",\n\n{\n\t$0\n}\n",
+                      "default": "// Settings in here override those in \"LSP-bash/LSP-bash.sublime-settings\"\n\n{\n\t$0\n}\n",
                     },
                   },
                 ],
