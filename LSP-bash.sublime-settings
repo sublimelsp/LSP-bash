@@ -11,6 +11,12 @@
 			],
 		},
 	],
+	// @see https://github.com/bash-lsp/bash-language-server/blob/master/server/src/config.ts
+	"env": {
+		"EXPLAINSHELL_ENDPOINT": "",
+		"GLOB_PATTERN": "",
+		"HIGHLIGHT_PARSING_ERRORS": "0",
+	},
 	"initializationOptions": {
 		// ...
 	},
