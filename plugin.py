@@ -16,11 +16,3 @@ class LspBashPlugin(NpmClientHandler):
     server_binary_path = os.path.join(
         server_directory, 'node_modules', 'bash-language-server', 'bin', 'main.js'
     )
-
-    @classmethod
-    def get_binary_arguments(cls):
-        return ['start']
-
-    @classmethod
-    def install_in_cache(cls) -> bool:
-        return False
