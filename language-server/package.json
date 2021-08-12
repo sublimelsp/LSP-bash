@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "private": true,
   "dependencies": {
     "bash-language-server": "^2.0.0"
   }
