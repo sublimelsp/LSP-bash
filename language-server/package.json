@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
   "dependencies": {
-    "bash-language-server": "^1.17.0"
+    "bash-language-server": "^2.0.0"
   }
 }
