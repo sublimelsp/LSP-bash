@@ -7,6 +7,10 @@
 		"EXPLAINSHELL_ENDPOINT": "",
 		"GLOB_PATTERN": "",
 		"HIGHLIGHT_PARSING_ERRORS": "0",
+		// If you have shellcheck on your machine, you can provide its path here to do linting.
+		// Or, if it can be found in PATH environment variable, you can simpliy use "shellcheck".
+		// To download shellcheck, go https://github.com/koalaman/shellcheck/releases/latest
+		"SHELLCHECK_PATH": "",
 	},
 	"initializationOptions": {
 		// ...
