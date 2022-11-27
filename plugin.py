@@ -3,11 +3,11 @@ from lsp_utils import NpmClientHandler
 import os
 
 
-def plugin_loaded():
+def plugin_loaded() -> None:
     LspBashPlugin.setup()
 
 
-def plugin_unloaded():
+def plugin_unloaded() -> None:
     LspBashPlugin.cleanup()
 
 
