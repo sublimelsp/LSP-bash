@@ -1,6 +1,6 @@
 {
   "private": true,
   "dependencies": {
-    "bash-language-server": "^3.2.3"
+    "bash-language-server": "^3.3.1"
   }
 }
