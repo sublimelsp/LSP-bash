@@ -4,13 +4,19 @@
 	"schemes": ["file", "buffer", "res"],
 	// @see https://github.com/bash-lsp/bash-language-server/blob/master/server/src/config.ts
 	"env": {
+		// Glob pattern for finding and parsing shell script files in the workspace. Used by the background analysis features across files.
+		"GLOB_PATTERN": "**/*@(.sh|.inc|.bash|.command)",
+		// Controls if Treesitter parsing errors will be highlighted as problems.
+		"HIGHLIGHT_PARSING_ERRORS": "false",
+		// Configure explainshell server endpoint in order to get hover documentation on flags and options.
+		// And empty string will disable the feature.
 		"EXPLAINSHELL_ENDPOINT": "",
-		"GLOB_PATTERN": "",
-		"HIGHLIGHT_PARSING_ERRORS": "0",
+		// Controls the executable used for ShellCheck linting information. An empty string will disable linting.
 		// If you have shellcheck on your machine, you can provide its path here to do linting.
-		// Leaving this empty will make the server search from the PATH environment variable.
 		// To download shellcheck, go https://github.com/koalaman/shellcheck/releases/latest
 		"SHELLCHECK_PATH": "",
+		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
+		"SHELLCHECK_ARGUMENTS": "",
 	},
 	"initializationOptions": {
 		// ...
