@@ -2,12 +2,16 @@
 	// Open "Preferences: LSP Utils Settings" from the Command Palette to customize the Node runtime.
 	"command": ["${node_bin}", "${server_path}", "start"],
 	"schemes": ["file", "buffer", "res"],
-	// @see https://github.com/bash-lsp/bash-language-server/blob/master/server/src/config.ts
+	// @see https://github.com/bash-lsp/bash-language-server/blob/main/server/src/config.ts
 	"env": {
 		// Glob pattern for finding and parsing shell script files in the workspace. Used by the background analysis features across files.
 		"GLOB_PATTERN": "**/*@(.sh|.inc|.bash|.command)",
 		// Controls if Treesitter parsing errors will be highlighted as problems.
 		"HIGHLIGHT_PARSING_ERRORS": "false",
+		// Controls how symbols (e.g. variables and functions) are included and used for completion and documentation.
+		// If false, then we only include symbols from sourced files (i.e. using non dynamic statements like 'source file.sh' or '. file.sh').
+		// If true, then all symbols from the workspace are included.
+		"INCLUDE_ALL_WORKSPACE_SYMBOLS": "false",
 		// Configure explainshell server endpoint in order to get hover documentation on flags and options.
 		// And empty string will disable the feature.
 		"EXPLAINSHELL_ENDPOINT": "",
