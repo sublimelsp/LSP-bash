@@ -15,10 +15,12 @@
 		// Configure explainshell server endpoint in order to get hover documentation on flags and options.
 		// And empty string will disable the feature.
 		"EXPLAINSHELL_ENDPOINT": "",
-		// Controls the executable used for ShellCheck linting information. An empty string will disable linting.
-		// If you have shellcheck on your machine, you can provide its path here to do linting.
+		// Controls the executable used for ShellCheck linting information.
+		// By default, bash language server will use shellcheck if it finds it on your machine.
+		// An empty string will disable linting.
+		// If you have shellcheck on your machine but it isn't in your PATH, you can provide its path here to do linting.
 		// To download shellcheck, go https://github.com/koalaman/shellcheck/releases/latest
-		"SHELLCHECK_PATH": "",
+		"SHELLCHECK_PATH": "shellcheck",
 		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
 		"SHELLCHECK_ARGUMENTS": "",
 	},
