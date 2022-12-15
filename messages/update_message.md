@@ -1,5 +1,8 @@
-## 1.1.13
+## 2.0.0
 
-- refactor: change "SHELLCHECK_PATH" to "shellchcek".
+### Breaking Changes
 
-  This is the default settings of the server. To disabled it, change it to an empty string.
+- refactor: migrate settings from `env` to `settings`
+
+  Load settings from `env` have been deprecated on the sever side.
+  For more details, see the `settings` key of LSP-bash settings.
