@@ -21,7 +21,7 @@
 		// To download shellcheck, go https://github.com/koalaman/shellcheck/releases/latest
 		"bashIde.shellcheckPath": "shellcheck",
 		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
-		"bashIde.shellcheckArguments": [],
+		"bashIde.shellcheckArguments": "",
 	},
 	// ST4
 	"selector": "source.shell.bash",
