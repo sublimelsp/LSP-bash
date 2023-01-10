@@ -10,6 +10,10 @@
 		// Glob pattern for finding and parsing shell script files in the workspace. Used by the background analysis features across files.
 		// "bashIde.globPattern": "**/*@(.sh|.inc|.bash|.command)",
 
+		// Log level for the server. To set the right log level from the start please also use the environment variable 'BASH_IDE_LOG_LEVEL'.
+		// Can be "debug", "info", "warning", "error".
+		// "bashIde.logLevel": "info",
+
 		// Controls if Treesitter parsing errors will be highlighted as problems.
 		// "bashIde.highlightParsingErrors": false,
 
