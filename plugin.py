@@ -17,8 +17,8 @@ class LspBashPlugin(NpmClientHandler):
         server_directory,
         "node_modules",
         "bash-language-server",
-        "bin",
-        "main.js",
+        "out",
+        "cli.js",
     )
 
     @classmethod
