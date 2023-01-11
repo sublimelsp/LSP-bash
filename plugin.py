@@ -1,4 +1,3 @@
-from LSP.plugin.core.typing import Tuple
 from lsp_utils import NpmClientHandler
 import os
 
@@ -23,5 +22,9 @@ class LspBashPlugin(NpmClientHandler):
     )
 
     @classmethod
-    def minimum_node_version(cls) -> Tuple[int, int, int]:
-        return (12, 0, 0)
+    def required_node_version(cls) -> str:
+        """
+        Testing playground at https://semver.npmjs.com
+        And `0.0.0` means "no restrictions".
+        """
+        return ">=12"
