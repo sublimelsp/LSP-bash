@@ -27,4 +27,4 @@ class LspBashPlugin(NpmClientHandler):
         Testing playground at https://semver.npmjs.com
         And `0.0.0` means "no restrictions".
         """
-        return ">=12"
+        return ">=14.18.0"
