@@ -33,9 +33,6 @@
 		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
 		// "bashIde.shellcheckArguments": [],
 	},
-	// ST4
-	"selector": "source.shell.bash",
-	// ST3
 	"languages": [
 		{
 			"languageId": "bash",

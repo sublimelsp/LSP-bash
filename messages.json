@@ -1,3 +1,5 @@
 {
-    "2.0.0": "messages/update_message.md"
+    "2.0.0": "messages/update_message.md",
+    "2.0.29": "INSTALL.txt",
+    "install": "INSTALL.txt"
 }
