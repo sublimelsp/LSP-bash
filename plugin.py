@@ -1,5 +1,10 @@
-from lsp_utils import NpmClientHandler
+from __future__ import annotations
+
 import os
+
+from lsp_utils import NpmClientHandler
+
+assert __package__
 
 
 def plugin_loaded() -> None:
