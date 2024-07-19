@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import json
 import os
-from pathlib import Path
 from typing import Any
 
+import jmespath
 import sublime
-from LSP.plugin import ClientConfig, DottedDict, WorkspaceFolder
+from LSP.plugin import DottedDict
 from lsp_utils import NpmClientHandler
 
 from .constants import PACKAGE_NAME
@@ -19,8 +19,6 @@ class LspBashPlugin(NpmClientHandler):
     server_directory = "language-server"
     server_binary_path = os.path.join(server_directory, "node_modules", "bash-language-server", "out", "cli.js")
 
-    server_package_json_path = os.path.join("node_modules", "bash-language-server", "package.json")
-    """The path to the `package.json` file of the language server."""
     server_version = ""
     """The version of the language server."""
 
@@ -39,23 +37,16 @@ class LspBashPlugin(NpmClientHandler):
             return True
         return False
 
+    @classmethod
+    def setup(cls) -> None:
+        super().setup()
+
+        cls.server_version = cls.parse_server_version()
+
     def on_settings_changed(self, settings: DottedDict) -> None:
         super().on_settings_changed(settings)
 
         self.update_status_bar_text()
-
-    @classmethod
-    def on_pre_start(
-        cls,
-        window: sublime.Window,
-        initiating_view: sublime.View,
-        workspace_folders: list[WorkspaceFolder],
-        configuration: ClientConfig,
-    ) -> str | None:
-        super().on_pre_start(window, initiating_view, workspace_folders, configuration)
-
-        cls.server_version = cls.parse_server_version()
-        return None
 
     # -------------- #
     # custom methods #
@@ -82,7 +73,5 @@ class LspBashPlugin(NpmClientHandler):
 
     @classmethod
     def parse_server_version(cls) -> str:
-        if server_dir := cls._server_directory_path():
-            with open(Path(server_dir) / cls.server_package_json_path, "rb") as f:
-                return json.load(f).get("version", "")
-        return ""
+        lock_file_content = sublime.load_resource(f"Packages/{PACKAGE_NAME}/language-server/package-lock.json")
+        return jmespath.search('dependencies."bash-language-server".version', json.loads(lock_file_content)) or ""
