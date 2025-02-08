@@ -37,6 +37,8 @@ class LspBashPlugin(NpmClientHandler):
             view.settings().get("repl")
             # syntax test files
             or os.path.basename(view.file_name() or "").startswith("syntax_test")
+            # zsh scripts
+            or view.match_selector(0, "source.shell.zsh")
         )
 
     @classmethod
