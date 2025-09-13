@@ -22,4 +22,4 @@ jobs:
         with:
           version-file: 'requirements-dev.txt'
       - run: ruff check
-      - run: ruff format
+      - run: ruff format --diff
