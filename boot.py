@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 def reload_plugin() -> None:
     import sys
 
