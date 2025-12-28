@@ -7,31 +7,58 @@
 		// Maximum number of files to analyze in the background. Set to 0 to disable background analysis.
 		// "bashIde.backgroundAnalysisMaxFiles": 500,
 
+		// Enable diagnostics for source errors. Ignored if includeAllWorkspaceSymbols is true.
+		// "bashIde.enableSourceErrorDiagnostics": false,
+
+		// Configure explainshell server endpoint in order to get hover documentation on flags and options.
+		// And empty string will disable the feature.
+		// "bashIde.explainshellEndpoint": "",
+
 		// Glob pattern for finding and parsing shell script files in the workspace. Used by the background analysis features across files.
 		// "bashIde.globPattern": "**/*@(.sh|.inc|.bash|.command)",
-
-		// Log level for the server. To set the right log level from the start please also use the environment variable 'BASH_IDE_LOG_LEVEL'.
-		// Can be "debug", "info", "warning", "error".
-		// "bashIde.logLevel": "info",
-
-		// Controls if Treesitter parsing errors will be highlighted as problems.
-		// "bashIde.highlightParsingErrors": false,
 
 		// Controls how symbols (e.g. variables and functions) are included and used for completion and documentation.
 		// If false, then we only include symbols from sourced files (i.e. using non dynamic statements like 'source file.sh' or '. file.sh').
 		// If true, then all symbols from the workspace are included.
 		// "bashIde.includeAllWorkspaceSymbols": false,
 
-		// Configure explainshell server endpoint in order to get hover documentation on flags and options.
-		// And empty string will disable the feature.
-		// "bashIde.explainshellEndpoint": "",
+		// Log level for the server. To set the right log level from the start please also use the environment variable 'BASH_IDE_LOG_LEVEL'.
+		// Can be "debug", "info", "warning", "error".
+		// "bashIde.logLevel": "info",
 
 		// Controls the executable used for ShellCheck linting information. An empty string will disable linting.
 		// To download shellcheck, go https://github.com/koalaman/shellcheck/releases/latest
 		// "bashIde.shellcheckPath": "shellcheck",
 
-		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
-		// "bashIde.shellcheckArguments": [],
+		// Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources.
+		// "bashIde.shellcheckArguments": "",
+
+		// Controls the executable used for Shfmt formatting. An empty string will disable formatting.
+		// "bashIde.shfmt.path": "shfmt",
+
+		// Ignore shfmt config options in .editorconfig (always use language server config)
+		// "bashIde.shfmt.ignoreEditorconfig": false,
+
+		// Language dialect to use when parsing (bash/posix/mksh/bats).
+		// "bashIde.shfmt.languageDialect": "auto",
+
+		// Allow boolean operators (like && and ||) to start a line.
+		// "bashIde.shfmt.binaryNextLine": false,
+
+		// Indent patterns in case statements.
+		// "bashIde.shfmt.caseIndent": false,
+
+		// Place function opening braces on a separate line.
+		// "bashIde.shfmt.funcNextLine": false,
+
+		// (Deprecated) Keep column alignment padding.
+		// "bashIde.shfmt.keepPadding": false,
+
+		// Simplify code before formatting.
+		// "bashIde.shfmt.simplifyCode": false,
+
+		// Follow redirection operators with a space.
+		// "bashIde.shfmt.spaceRedirects": false,
 
 		// The (Jinja2) template of the status bar text which is inside the parentheses `(...)`.
 		// See https://jinja.palletsprojects.com/templates/
