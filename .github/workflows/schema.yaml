@@ -15,5 +15,5 @@ jobs:
       configuration_file_path: 'vscode-client/package.json'
       configuration_jq_query: '.contributes.configuration.properties'
       version_file: 'language-server/package.json'
-      version_regexp: '"bash-language-server": "(\d.)+"'
+      version_regexp: '"bash-language-server": "\d+.\d+.\d+"'
       version_transform: 'server-{}'
