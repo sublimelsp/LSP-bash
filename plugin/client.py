@@ -2,18 +2,20 @@ from __future__ import annotations
 
 import json
 import os
-from typing import Any
+from typing import Any, final
 
 import jmespath
 import sublime
-from LSP.plugin import DottedDict
+from LSP.plugin import ClientConfig, DottedDict
 from lsp_utils import NpmClientHandler
+from typing_extensions import override
 
 from .constants import PACKAGE_NAME
 from .log import log_warning
 from .template import load_string_template
 
 
+@final
 class LspBashPlugin(NpmClientHandler):
     package_name = PACKAGE_NAME
     server_directory = "language-server"
@@ -23,6 +25,7 @@ class LspBashPlugin(NpmClientHandler):
     """The version of the language server."""
 
     @classmethod
+    @override
     def required_node_version(cls) -> str:
         """
         Testing playground at https://semver.npmjs.com
@@ -31,22 +34,24 @@ class LspBashPlugin(NpmClientHandler):
         return ">=14.18.0"
 
     @classmethod
-    def should_ignore(cls, view: sublime.View) -> bool:
+    @override
+    def is_applicable(cls, view: sublime.View, config: ClientConfig) -> bool:
         return bool(
+            super().is_applicable(view, config)
             # SublimeREPL views
-            view.settings().get("repl")
-            # syntax test files
-            or os.path.basename(view.file_name() or "").startswith("syntax_test")
+            and not view.settings().get("repl")
             # zsh scripts
-            or view.match_selector(0, "source.shell.zsh")
+            and not view.match_selector(0, "source.shell.zsh")
         )
 
     @classmethod
+    @override
     def setup(cls) -> None:
         super().setup()
 
         cls.server_version = cls.parse_server_version()
 
+    @override
     def on_settings_changed(self, settings: DottedDict) -> None:
         super().on_settings_changed(settings)
 
