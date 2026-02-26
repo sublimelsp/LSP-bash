@@ -40,8 +40,6 @@ class LspBashPlugin(NpmClientHandler):
             super().is_applicable(view, config)
             # SublimeREPL views
             and not view.settings().get("repl")
-            # zsh scripts
-            and not view.match_selector(0, "source.shell.zsh")
         )
 
     @classmethod

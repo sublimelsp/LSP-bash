@@ -63,5 +63,5 @@
 		// See https://jinja.palletsprojects.com/templates/
 		"statusText": "{% if server_version %}v{{ server_version }}{% endif %}",
 	},
-	"selector": "source.shell.bash",
+	"selector": "source.shell.bash - source.shell.zsh",
 }
