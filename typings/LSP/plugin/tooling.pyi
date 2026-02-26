@@ -13,8 +13,19 @@ from .session_buffer import SessionBuffer as SessionBuffer
 from _typeshed import Incomplete
 from typing import Any, Callable
 
-def _translate_description(translations: dict[str, str] | None, descr: str) -> tuple[str, bool]: ...
-def _preprocess_properties(translations: dict[str, str] | None, properties: dict[str, Any]) -> None: ...
+def _translate_description(translations: dict[str, str] | None, descr: str) -> tuple[str, bool]:
+    '''
+    Translate a placeholder description like "%foo.bar.baz" into an English translation. The translation map is
+    the first argument.
+    '''
+def _preprocess_properties(translations: dict[str, str] | None, properties: dict[str, Any]) -> None:
+    '''
+    Preprocess the server settings from a package.json file:
+
+    - Replace description translation placeholders by their English translation
+    - Discard the "scope" key
+    - Removes key/values whose value is not a dict
+    '''
 def _enum_to_str(value: Any) -> str: ...
 
 class BasePackageNameInputHandler(sublime_plugin.TextInputHandler):
@@ -44,12 +55,23 @@ class LspCopyToClipboardFromBase64Command(sublime_plugin.ApplicationCommand):
     def run(self, contents: str = '') -> None: ...
 
 class LspDumpWindowConfigs(sublime_plugin.WindowCommand):
+    """
+    Very basic command to dump all of the window's resolved configurations.
+    """
     def run(self) -> None: ...
 
 class LspDumpBufferCapabilities(sublime_plugin.TextCommand):
+    """
+    Very basic command to dump the current view's static and dynamically registered capabilities.
+    """
     def run(self, edit: sublime.Edit) -> None: ...
 
 class ServerTestRunner(TransportCallbacks):
+    """
+    Used to start the server and collect any potential stderr output and the exit code.
+
+    Server is automatically closed after defined timeout.
+    """
     CLOSE_TIMEOUT_SEC: int
     _on_close: Incomplete
     _transport: Incomplete

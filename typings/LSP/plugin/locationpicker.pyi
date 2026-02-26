@@ -1,7 +1,7 @@
 import sublime
+from ..protocol import DocumentUri as DocumentUri, Location as Location, LocationLink as LocationLink, Position as Position
 from .core.constants import ST_PACKAGES_PATH as ST_PACKAGES_PATH, SublimeKind as SublimeKind
 from .core.logging import debug as debug
-from .core.protocol import DocumentUri as DocumentUri, Location as Location, LocationLink as LocationLink, Position as Position
 from .core.sessions import Session as Session
 from .core.views import get_uri_and_position_from_location as get_uri_and_position_from_location, location_to_human_readable as location_to_human_readable, to_encoded_filename as to_encoded_filename
 from _typeshed import Incomplete

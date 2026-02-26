@@ -1,9 +1,17 @@
 import sublime
+from ...protocol import SignatureHelp as SignatureHelp, SignatureInformation as SignatureInformation
 from .logging import debug as debug
-from .protocol import SignatureHelp as SignatureHelp, SignatureInformation as SignatureInformation
 from .registry import LspTextCommand as LspTextCommand
 from .views import FORMAT_MARKUP_CONTENT as FORMAT_MARKUP_CONTENT, FORMAT_STRING as FORMAT_STRING, MarkdownLangMap as MarkdownLangMap, minihtml as minihtml
 from _typeshed import Incomplete
+from typing import TypedDict
+
+class SignatureHelpStyle(TypedDict):
+    function_color: str
+    active_parameter_color: str
+    active_parameter_bold: bool
+    active_parameter_underline: bool
+    inactive_parameter_color: str
 
 class LspSignatureHelpNavigateCommand(LspTextCommand):
     def want_event(self) -> bool: ...
@@ -14,23 +22,30 @@ class LspSignatureHelpShowCommand(LspTextCommand):
     def run(self, _: sublime.Edit) -> None: ...
 
 class SigHelp:
+    """
+    A quasi state-machine object that maintains which signature (a.k.a. overload) is active. The active signature is
+    determined by what the end-user is doing.
+    """
     _state: Incomplete
     _language_map: Incomplete
     _signatures: Incomplete
     _active_signature_index: Incomplete
     _active_parameter_index: Incomplete
-    _function_color: str
-    _active_parameter_color: str
-    _active_parameter_bold: bool
-    _active_parameter_underline: bool
-    _inactive_parameter_color: str
-    def __init__(self, state: SignatureHelp, language_map: MarkdownLangMap | None) -> None: ...
+    _style: Incomplete
+    def __init__(self, state: SignatureHelp, language_map: MarkdownLangMap | None, style: SignatureHelpStyle) -> None: ...
     @classmethod
-    def from_lsp(cls, sighelp: SignatureHelp | None, language_map: MarkdownLangMap | None) -> SigHelp | None: ...
-    def render(self, view: sublime.View) -> str: ...
-    def active_signature_help(self) -> SignatureHelp: ...
-    def has_multiple_signatures(self) -> bool: ...
-    def select_signature(self, forward: bool) -> None: ...
+    def from_lsp(cls, sighelp: SignatureHelp | None, language_map: MarkdownLangMap | None, style: SignatureHelpStyle) -> SigHelp | None:
+        """Create a SigHelp state object from a server's response to textDocument/signatureHelp."""
+    def render(self, view: sublime.View) -> str:
+        """Render the signature help content as minihtml."""
+    def active_signature_help(self) -> SignatureHelp:
+        """
+        Extract the state out of this state machine to send back to the language server.
+        """
+    def has_multiple_signatures(self) -> bool:
+        """Does the current signature help state contain more than one overload?"""
+    def select_signature(self, forward: bool) -> None:
+        """Increment or decrement the active overload; purely chosen by the end-user."""
     def _render_intro(self) -> str: ...
     def _render_label(self, signature: SignatureInformation) -> list[str]: ...
     def _render_docs(self, view: sublime.View, signature: SignatureInformation) -> list[str]: ...

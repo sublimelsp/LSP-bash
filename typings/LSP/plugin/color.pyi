@@ -1,6 +1,7 @@
 import sublime
+from ..protocol import ColorInformation as ColorInformation, ColorPresentation as ColorPresentation, ColorPresentationParams as ColorPresentationParams
 from .core.edit import apply_text_edits as apply_text_edits
-from .core.protocol import ColorInformation as ColorInformation, ColorPresentation as ColorPresentation, ColorPresentationParams as ColorPresentationParams, Request as Request
+from .core.protocol import Request as Request
 from .core.registry import LspTextCommand as LspTextCommand
 from .core.views import range_to_region as range_to_region, text_document_identifier as text_document_identifier
 from _typeshed import Incomplete

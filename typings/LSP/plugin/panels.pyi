@@ -23,9 +23,15 @@ class LspToggleLogPanelLinesLimitCommand(sublime_plugin.TextCommand):
     def run(self, edit: sublime.Edit) -> None: ...
 
 class LspClearPanelCommand(sublime_plugin.TextCommand):
+    """
+    A clear_panel command to clear the error panel.
+    """
     def run(self, edit: sublime.Edit) -> None: ...
 
 class LspUpdatePanelCommand(sublime_plugin.TextCommand):
+    """
+    A update_panel command to update the error panel with new text.
+    """
     def run(self, edit: sublime.Edit, characters: str | None = '') -> None: ...
 
 class LspUpdateLogPanelCommand(sublime_plugin.TextCommand):

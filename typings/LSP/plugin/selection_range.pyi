@@ -1,5 +1,6 @@
 import sublime
-from .core.protocol import Request as Request, SelectionRange as SelectionRange
+from ..protocol import SelectionRange as SelectionRange
+from .core.protocol import Request as Request
 from .core.registry import LspTextCommand as LspTextCommand, get_position as get_position
 from .core.views import range_to_region as range_to_region, selection_range_params as selection_range_params
 from _typeshed import Incomplete
