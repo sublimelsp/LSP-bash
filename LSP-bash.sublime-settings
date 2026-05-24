@@ -1,7 +1,4 @@
 {
-	// Open "Preferences: LSP Utils Settings" from the Command Palette to customize the Node runtime.
-	"command": ["${node_bin}", "${server_path}", "start"],
-	"schemes": ["file", "buffer", "res"],
 	"settings": {
 		// Maximum number of files to analyze in the background. Set to 0 to disable background analysis.
 		"bashIde.backgroundAnalysisMaxFiles": 500,
@@ -63,5 +60,13 @@
 		// See https://jinja.palletsprojects.com/templates/
 		"statusText": "{% if server_version %}v{{ server_version }}{% endif %}",
 	},
+	// The path to the server binary used to start the language server.
+	// Use `auto` for the package to manage (install/update) the server automatically.
+	// NOTE: Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved based on this setting.
+	// WARNING: Override at your own risk - using a custom binary can cause compatibility issues with server settings.
+	"server_path": "auto",
+	// Open "Preferences: LSP Utils Settings" from the Command Palette to customize the Node runtime.
+	"command": ["${node_bin}", "${server_path}", "start"],
+	"schemes": ["file", "buffer", "res"],
 	"selector": "source.shell.bash - source.shell.zsh",
 }

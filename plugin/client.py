@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import json
-import os
+from pathlib import Path
 from typing import Any, final
 
 import jmespath
 import sublime
-from LSP.plugin import ClientConfig, DottedDict
-from lsp_utils import NpmClientHandler
+from LSP.plugin import LspPlugin, OnPreStartContext
+from lsp_utils import NodeManager
+from sublime_lib import ResourcePath
 from typing_extensions import override
 
 from .constants import PACKAGE_NAME
@@ -16,48 +17,33 @@ from .template import load_string_template
 
 
 @final
-class LspBashPlugin(NpmClientHandler):
-    package_name = PACKAGE_NAME
-    server_directory = "language-server"
-    server_binary_path = os.path.join(server_directory, "node_modules", "bash-language-server", "out", "cli.js")
-
+class LspBashPlugin(LspPlugin):
     server_version = ""
     """The version of the language server."""
 
     @classmethod
     @override
-    def required_node_version(cls) -> str:
-        """
-        Testing playground at https://semver.npmjs.com
-        And `0.0.0` means "no restrictions".
-        """
-        return ">=14.18.0"
-
-    @classmethod
-    @override
-    def is_applicable(cls, view: sublime.View, config: ClientConfig) -> bool:
-        return bool(
-            super().is_applicable(view, config)
-            # SublimeREPL views
-            and not view.settings().get("repl")
+    def on_pre_start_async(cls, context: OnPreStartContext) -> None:
+        package_name = cls.plugin_storage_path.name
+        NodeManager.on_pre_start_async(
+            context,
+            cls.plugin_storage_path,
+            ResourcePath('Packages', package_name, 'language-server'),
+            Path('node_modules', 'bash-language-server', 'out', 'cli.js'),
+            node_version_requirement='>=14.18.0',
         )
 
-    @classmethod
     @override
-    def setup(cls) -> None:
-        super().setup()
-
-        cls.server_version = cls.parse_server_version()
-
-    @override
-    def on_settings_changed(self, settings: DottedDict) -> None:
-        super().on_settings_changed(settings)
-
+    def on_initialized_async(self) -> None:
         self.update_status_bar_text()
 
     # -------------- #
     # custom methods #
     # -------------- #
+
+    @classmethod
+    def setup(cls) -> None:
+        cls.server_version = cls.parse_server_version()
 
     def update_status_bar_text(self, extra_variables: dict[str, Any] | None = None) -> None:
         if not (session := self.weaksession()):
