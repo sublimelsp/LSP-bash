@@ -28,9 +28,9 @@ class LspBashPlugin(LspPlugin):
         NodeManager.on_pre_start_async(
             context,
             cls.plugin_storage_path,
-            ResourcePath('Packages', package_name, 'language-server'),
-            Path('node_modules', 'bash-language-server', 'out', 'cli.js'),
-            node_version_requirement='>=14.18.0',
+            ResourcePath("Packages", package_name, "language-server"),
+            Path("node_modules", "bash-language-server", "out", "cli.js"),
+            node_version_requirement=">=14.18.0",
         )
 
     @override
