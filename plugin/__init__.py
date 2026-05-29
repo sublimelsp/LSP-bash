@@ -15,9 +15,10 @@ __all__ = (
 
 def plugin_loaded() -> None:
     """Executed when this plugin is loaded."""
+    LspBashPlugin.register()
     LspBashPlugin.setup()
 
 
 def plugin_unloaded() -> None:
     """Executed when this plugin is unloaded."""
-    LspBashPlugin.cleanup()
+    LspBashPlugin.unregister()
