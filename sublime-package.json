@@ -128,7 +128,7 @@
 
 										"statusText": {
 											"type": "string",
-											"default": "{% if server_version %}v{{ server_version }}{% endif %}",
+											"default": "",
 											"markdownDescription": "The (Jinja2) template of the status bar text which is inside the parentheses `(...)`."
 										}
 									}

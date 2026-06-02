@@ -58,7 +58,8 @@
 
 		// The (Jinja2) template of the status bar text which is inside the parentheses `(...)`.
 		// See https://jinja.palletsprojects.com/templates/
-		"statusText": "{% if server_version %}v{{ server_version }}{% endif %}",
+		// Set to "{% if server_version %}v{{ server_version }}{% endif %}" to show server version.
+		"statusText": "",
 	},
 	// The path to the server binary used to start the language server.
 	// Use `auto` for the package to manage (install/update) the server automatically.
