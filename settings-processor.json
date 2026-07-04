@@ -1,0 +1,10 @@
+{
+    "input_repository_url": "https://github.com/bash-lsp/bash-language-server",
+    "input_repository_json_configuration_path": "vscode-client/package.json",
+    "transformers": [
+        {
+            "type": "jq",
+            "options": ".contributes.configuration.properties"
+        }
+    ]
+}
