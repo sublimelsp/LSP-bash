@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/sublimelsp/lsp_smoke_test/v1/smoke.schema.json
+file: sample.sh
+# The diagnostics come from ShellCheck.
+# SC2086: Double quote to prevent globbing and word splitting.
+expected_diagnostics:
+  code: SC2086
