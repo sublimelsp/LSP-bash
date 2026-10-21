@@ -3,14 +3,16 @@ name: Check/update settings schema
 on:
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - 'language-server/package.json'
 
 jobs:
   check-settings:
-    uses: sublimelsp/workflows/.github/workflows/changed-settings.yaml@v2
+    uses: sublimelsp/workflows/.github/workflows/changed-settings.yaml@v3
     with:
       version_file: 'language-server/package.json'
       version_regexp: '"bash-language-server": "(\d+\.\d+\.\d+)"'
       version_transform: 'server-{}'
+    secrets:
+      SUBLIMELSP_APP_PRIVATE_KEY: ${{ secrets.SUBLIMELSP_APP_PRIVATE_KEY }}
